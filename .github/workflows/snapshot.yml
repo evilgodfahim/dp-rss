@@ -3,7 +3,7 @@ name: Snapshot DhakaPost Opinion
 on:
   schedule:
     - cron: '*/30 * * * *'  # runs every 30 minutes
-  workflow_dispatch: {}    # allows manual triggering
+  workflow_dispatch: {}    # manual trigger button
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
           node-version: '18'
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install   # switched from npm ci to npm install
 
       - name: Run Snapshot Script
         run: npm run snapshot
