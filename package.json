@@ -1,0 +1,12 @@
+{
+  "name": "dhakapost-opinion-snapshot",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "snapshot": "node snapshot.js"
+  },
+  "dependencies": {
+    "puppeteer": "latest"
+  }
+}
