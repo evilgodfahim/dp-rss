@@ -1,0 +1,36 @@
+name: Snapshot DhakaPost Opinion
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # runs every 30 minutes
+  workflow_dispatch: {}    # allows manual triggering
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Snapshot Script
+        run: npm run snapshot
+
+      - name: Commit & Push Static HTML
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add index.html
+            git commit -m "Update snapshot of Dhaka Post Opinion ($(date -u +"%Y-%m-%d %H:%M UTC"))"
+            git push
+          else
+            echo "No changes in snapshot."
+          fi
