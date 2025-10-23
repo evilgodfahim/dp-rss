@@ -2,7 +2,7 @@ name: Snapshot DhakaPost Opinion
 
 on:
   schedule:
-    - cron: '*/15 * * * *'  # runs every 30 minutes
+    - cron: '*/5 * * * *'  # runs every 30 minutes
   workflow_dispatch: {}    # manual trigger button
 
 jobs:
